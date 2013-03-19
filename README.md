@@ -10,9 +10,8 @@ We are using command based robot on the following subsytems:
 | Subsystem: | Commands:             |
 |------------|-----------------------|
 |Drive       |DriveControl           |
-|------------|-----------------------|
-|Launcher    |Auto, LauncherControl  |
-|------------|-----------------------|
+|Launcher    |Auto                   |
+|            |LauncherControl        |
 |Tilt        |TiltControl            |
 
 ### RobotControls
