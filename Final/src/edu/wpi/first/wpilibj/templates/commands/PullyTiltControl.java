@@ -22,6 +22,7 @@ public class PullyTiltControl extends CommandBase {
         
         SmartDashboard.putBoolean("ptilt up", ti.up);
         SmartDashboard.putBoolean("ptilt down", ti.down);
+        SmartDashboard.putNumber("tilt angle", RobotMap.tiltpot.getValue());
         
         RobotMap.tiltrelay.set(ti.getDirection());
         

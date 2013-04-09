@@ -1,5 +1,6 @@
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
@@ -28,4 +29,5 @@ public class RobotMap {
     // Light for the camera
     public static Relay camlight = new Relay(2);
     
+    public static AnalogChannel tiltpot = new AnalogChannel(1);
 }

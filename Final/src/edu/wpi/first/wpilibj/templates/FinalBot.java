@@ -2,10 +2,13 @@ package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.templates.commands.Auto;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.commands.TiltToPotReading;
 
 /**
  * Main class of the robot. Most of the methods below are called upon entering/exiting
@@ -20,12 +23,14 @@ public class FinalBot extends IterativeRobot {
 
     // Autonomous command object that is called to enter/exit autonomous
     private Auto auto;
+    private Command autoaim;
 
     /**
      * Called when the robot first starts
      */
     public void robotInit() {
         auto = new Auto();
+        autoaim = new TiltToPotReading(OI.AIM_ANGLE);
         CommandBase.init();
     }
 
@@ -33,6 +38,7 @@ public class FinalBot extends IterativeRobot {
      * Called at the beginning of autonomous and starts the auto command.
      */
     public void autonomousInit() {
+        //autoaim.start();
         auto.start();
     }
 

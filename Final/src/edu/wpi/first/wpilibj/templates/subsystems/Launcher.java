@@ -49,6 +49,11 @@ public class Launcher extends Subsystem {
             return !isReady();
         }
         
+        public void disable() {
+            RobotMap.feedspike.set(Relay.Value.kOff);
+            state = 0;
+        }
+        
         private void nextState() {
             state = (byte)((state + (byte)1) % STATE_COUNT);
         }

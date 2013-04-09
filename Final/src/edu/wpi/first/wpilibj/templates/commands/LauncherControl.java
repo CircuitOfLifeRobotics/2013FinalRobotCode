@@ -17,9 +17,9 @@ public class LauncherControl extends CommandBase {
 
     protected void execute() {
         ShooterInput si = oi.getShooterInput();
-        launcher.set(si.power);
+        launcher.set((si.power < -.5 ? -1 : 0));
         launcher.triggerFeeder(si.feed);
-        SmartDashboard.putNumber("Shooter Speed", si.power);
+        SmartDashboard.putNumber("Shooter Speed", (si.power < -.5 ? -1 : 0));
         SmartDashboard.putBoolean("Shooter Feeding", si.feed);
     }
 

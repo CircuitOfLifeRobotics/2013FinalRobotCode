@@ -3,6 +3,8 @@ package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.TiltToPotReading;
 
 /**
  * This class holds all of the objects for operator interaction, such as Joysticks
@@ -15,6 +17,17 @@ public class OI {
     
     public Joystick drivercontroller = new Joystick(2);
     public final int FORWARD_AXIS = 2, TURN_AXIS = 4;
+    
+    public JoystickButton climbbutton = new JoystickButton(shootercontroller, 7),
+            aimbutton = new JoystickButton(shootercontroller, 8),
+            loadbutton = new JoystickButton(shootercontroller, 4);
+    public static final int CLIMB_ANGLE = 294, AIM_ANGLE = 567, LOAD_ANGLE = 531;
+    
+    public OI() {
+        climbbutton.whenPressed(new TiltToPotReading(CLIMB_ANGLE));
+        aimbutton.whenPressed(new TiltToPotReading(AIM_ANGLE));
+        loadbutton.whenPressed(new TiltToPotReading(LOAD_ANGLE));
+    }
     
     public DriverInput getDriverInput() {
         return new DriverInput(
