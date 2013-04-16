@@ -6,6 +6,7 @@ package edu.wpi.first.wpilibj.templates.commands;
  */
 public class Auto extends CommandBase {
 
+    //Constructor, this class requires launcher subsystem
     public Auto() {
         requires(launcher);
     }
@@ -47,24 +48,31 @@ public class Auto extends CommandBase {
         starttime = System.currentTimeMillis();
     }
 
+
     protected void execute() {
-        
+        //if autonomous is not enabled, cancel autnonomous mode
         if (!isEnabled()) {
             launcher.set(0);
             return;
         }
-        
+        //Sets shooter speed to 100%
         launcher.set(-1);
         
+        //If the robot is in autonomous mode then the motors will begin spinning
         if (stage == SPINUP) {
+           //Allows for 3, 3.5, and 3.5 seconds for motors to spin up
             if (System.currentTimeMillis() - starttime > (disc == 1 ? 3000 : 3500)) {
                 nextStage();
             }
+            //After the robot spins up, feed disk
         } else if (stage == FEED) {
             launcher.fs.execute(true);
             nextStage();
-        } else if (stage == WAIT_FOR_FEED) {
+        }
+            //If stage is 2, launch disk and continue
+        else if (stage == WAIT_FOR_FEED) {
             launcher.fs.execute(false);
+            //If thhe launcher is ready to excecute, advance to next stage
             if (launcher.fs.isReady()) {
                 nextStage();
                 disc += 1;
@@ -72,6 +80,8 @@ public class Auto extends CommandBase {
                     disable();
                 }
             }
+            //If one stage takes more than 5 seconds, diable autonomous so robot
+            //does not overload CRIO
             if (System.currentTimeMillis() - starttime > 5000) {
                 disable();
             }

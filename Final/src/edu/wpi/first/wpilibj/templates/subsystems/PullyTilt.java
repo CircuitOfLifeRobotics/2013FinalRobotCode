@@ -20,6 +20,7 @@ public class PullyTilt extends Subsystem {
     }
     
     public int getPotReading() {
+        //Returns reading of potentiometer on pully mechanism
         return RobotMap.tiltpot.getValue();
     }
 }

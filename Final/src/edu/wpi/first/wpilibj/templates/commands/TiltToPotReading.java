@@ -1,3 +1,12 @@
+/**
+ * This class controls the tilt subsystem and tilts the launcher of the robot to
+ * a desired angle. The driver can press a button on the Xbox controller
+ * and the shooter will tilt. The button mappings are as follows:
+ * Y: Tilts to feeding angle
+ * Start: tilts to shooter angle (from back of pyramid)
+ * Select: begins climbing sequence (lowers launcher until robot is lifted)
+ */
+
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.Relay;
@@ -12,14 +21,13 @@ public class TiltToPotReading extends CommandBase {
         this.dest = dest;
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     }
 
     private boolean done = false;
     
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        //Cancels command if user presses X 
         if (oi.shootercontroller.getRawButton(3)) {
             done = true;
             return;
@@ -27,11 +35,12 @@ public class TiltToPotReading extends CommandBase {
         
         int tilt = ptilt.getPotReading();
         SmartDashboard.putNumber("tilt angle", tilt);
-        
+        //If the value of the potentiometer is within +- 3, stop tilting
         if (Math.abs(dest-tilt) < 3){
             ptilt.set(Relay.Value.kOff);
             done = true;
         } else {
+            //If tilts too high, go down
             if (dest-tilt > 0) {
                 ptilt.set(Relay.Value.kReverse);
             } else {
@@ -43,8 +52,7 @@ public class TiltToPotReading extends CommandBase {
     public int getDestinationValue() {
         return dest;
     }
-    
-    // Make this return true when this Command no longer needs to run execute()
+    //Checks to see if tilting is finished
     protected boolean isFinished() {
         if (!done) {
             return false;
@@ -54,12 +62,9 @@ public class TiltToPotReading extends CommandBase {
         }
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     }
 }
