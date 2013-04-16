@@ -34,7 +34,7 @@ public class Launcher extends Subsystem {
     
     public class FeederState {
         
-        //s tates
+        //states
         private final byte S_READY = 0, S_WAIT_OFF = 1, S_WAIT_ON = 2;
         private final byte STATE_COUNT = (byte)3;
         private byte state = 0;

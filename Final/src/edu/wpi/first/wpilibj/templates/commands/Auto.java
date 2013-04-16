@@ -58,21 +58,19 @@ public class Auto extends CommandBase {
         //Sets shooter speed to 100%
         launcher.set(-1);
         
-        //If the robot is in autonomous mode then the motors will begin spinning
         if (stage == SPINUP) {
-           //Allows for 3, 3.5, and 3.5 seconds for motors to spin up
+            //Allows for 3.5, 3, and 3.5 seconds for motors to spin up
             if (System.currentTimeMillis() - starttime > (disc == 1 ? 3000 : 3500)) {
                 nextStage();
             }
-            //After the robot spins up, feed disk
+        //After the robot spins up, feed disk
         } else if (stage == FEED) {
             launcher.fs.execute(true);
             nextStage();
-        }
-            //If stage is 2, launch disk and continue
-        else if (stage == WAIT_FOR_FEED) {
+        //Waits for the feed to finish
+        } else if (stage == WAIT_FOR_FEED) {
             launcher.fs.execute(false);
-            //If thhe launcher is ready to excecute, advance to next stage
+            //If the feed has finished, advance to next stage
             if (launcher.fs.isReady()) {
                 nextStage();
                 disc += 1;
@@ -80,8 +78,8 @@ public class Auto extends CommandBase {
                     disable();
                 }
             }
-            //If one stage takes more than 5 seconds, diable autonomous so robot
-            //does not overload CRIO
+            //If the feeding takes longer than 5 seconds, then we know the disk
+            //is jammed.
             if (System.currentTimeMillis() - starttime > 5000) {
                 disable();
             }

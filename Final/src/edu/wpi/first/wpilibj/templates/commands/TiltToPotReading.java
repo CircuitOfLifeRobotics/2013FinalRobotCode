@@ -1,10 +1,7 @@
 /**
  * This class controls the tilt subsystem and tilts the launcher of the robot to
  * a desired angle. The driver can press a button on the Xbox controller
- * and the shooter will tilt. The button mappings are as follows:
- * Y: Tilts to feeding angle
- * Start: tilts to shooter angle (from back of pyramid)
- * Select: begins climbing sequence (lowers launcher until robot is lifted)
+ * and the shooter will tilt. 
  */
 
 package edu.wpi.first.wpilibj.templates.commands;
@@ -52,7 +49,7 @@ public class TiltToPotReading extends CommandBase {
     public int getDestinationValue() {
         return dest;
     }
-    //Checks to see if tilting is finished
+    
     protected boolean isFinished() {
         if (!done) {
             return false;

@@ -16,9 +16,9 @@ public class LauncherControl extends CommandBase {
     }
 
     protected void execute() {
-        //Creates new ShooterInput si
         ShooterInput si = oi.getShooterInput();
         
+        //If the user pushes trigger more than halfway, spin motor at full power
         launcher.set((si.power < -.5 ? -1 : 0));
         launcher.triggerFeeder(si.feed);
         SmartDashboard.putNumber("Shooter Speed", (si.power < -.5 ? -1 : 0));
