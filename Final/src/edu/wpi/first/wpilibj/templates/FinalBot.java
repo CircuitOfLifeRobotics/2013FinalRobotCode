@@ -61,7 +61,6 @@ public class FinalBot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-         Drive.encoderValue();
     }
     
     public void disabledInit(){
