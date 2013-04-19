@@ -39,7 +39,7 @@ public class Drive extends Subsystem {
     public void tankDrive(Joystick a, Joystick b) {
         tankDrive(a, b, false);
     }
-    public static void encoderValue(){
+    public void encoderValue(){
         SmartDashboard.putNumber("Left Encoder: ", RobotMap.leftenc.get());
         SmartDashboard.putNumber("Right Encoder: ", RobotMap.rightenc.get());
 }
