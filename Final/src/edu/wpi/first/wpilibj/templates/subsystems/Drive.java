@@ -2,6 +2,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.DriveControl;
 
@@ -38,6 +39,10 @@ public class Drive extends Subsystem {
     public void tankDrive(Joystick a, Joystick b) {
         tankDrive(a, b, false);
     }
+    public static void encoderValue(){
+        SmartDashboard.putNumber("Left Encoder: ", RobotMap.leftenc.get());
+        SmartDashboard.putNumber("Right Encoder: ", RobotMap.rightenc.get());
+}
     
     public void tankDrive(Joystick a, Joystick b, boolean inverse) {
         double aval = a.getRawAxis(2);

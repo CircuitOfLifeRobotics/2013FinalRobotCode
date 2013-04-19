@@ -2,13 +2,13 @@ package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.templates.commands.Auto;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPotReading;
+import edu.wpi.first.wpilibj.templates.subsystems.Drive;
 
 /**
  * Main class of the robot. Most of the methods below are called upon entering/exiting
@@ -56,10 +56,12 @@ public class FinalBot extends IterativeRobot {
         
         // Turns the light on
 	RobotMap.camlight.set(Relay.Value.kForward);
+       
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+         Drive.encoderValue();
     }
     
     public void disabledInit(){

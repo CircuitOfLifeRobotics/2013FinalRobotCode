@@ -18,6 +18,7 @@ public class RobotMap {
     public static Encoder leftenc = new Encoder(1, 2),
             rightenc = new Encoder(3, 4);
     
+    
     // Shooter Subsystem
     public static Jaguar shootjag = new Jaguar(5);
     public static Relay feedspike = new Relay(1);
